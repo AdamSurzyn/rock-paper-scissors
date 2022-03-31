@@ -8,25 +8,35 @@
 </head>
 <body>
     <script>
-        
+        function game(){
+         let weapon = ""   
+            for(i=0; i<5;i++){
+                weapon = prompt("Choose your weapon:")
+                playRound(weapon, computerPlay())
+            }
+        }
+
+
         function playRound(playerSelection, computerSelection){
             //let playerSelection = window.prompt("Rock, paper or scissors?")
-            playerSelection = "Rock"
-            playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+            let upperCasePlayer = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
             computerSelection = computerPlay()
             const winningPlays = ["Rock, Scissors", "Scissors, Paper", "Paper, Rock"]
 
-            let playArray = playerSelection +", "+ computerSelection
+            let playArray = upperCasePlayer +", "+ computerSelection
             playArray.toString()
             console.log(computerSelection)
-            console.log(playerSelection)
+            console.log(upperCasePlayer)
 
            if(winningPlays.includes(playArray)){
-            return `You win! ${playerSelection} beats ${computerSelection}`
-            }else if(playerSelection === computerSelection){
-            return "It's a tie!"
+                alert(`You win! ${upperCasePlayer} beats ${computerSelection}`)
+                return `You win! ${upperCasePlayer} beats ${computerSelection}`
+            }else if(upperCasePlayer === computerSelection){
+                alert("It's a tie!")
+                return "It's a tie!"
             }else{
-            return `You lose! ${computerSelection} beats ${playerSelection}`
+                alert(`You lose! ${computerSelection} beats ${upperCasePlayer}`)
+                return `You lose! ${computerSelection} beats ${upperCasePlayer}`
             }
             
         }
@@ -40,7 +50,7 @@
         // sometimes scissors is a tie, why?
         
 
-        console.log(playRound())
+        console.log(game())
         
     </script>
 </body>
