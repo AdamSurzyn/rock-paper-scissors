@@ -22,12 +22,13 @@
             console.log(playerSelection)
 
            if(winningPlays.includes(playArray)){
-            return "Player wins!"
+            return `You win! ${playerSelection} beats ${computerSelection}`
             }else if(playerSelection === computerSelection){
             return "It's a tie!"
             }else{
-            return "Computer wins!"
+            return `You lose! ${computerSelection} beats ${playerSelection}`
             }
+            
         }
         
         function computerPlay(){
