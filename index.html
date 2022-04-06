@@ -7,27 +7,26 @@
     <title>Document</title>
 </head>
 <body>
+
+    <button class = "Rock">Rock</button>
+    <button>Paper</button>
+    <button>Scissors</button>
+
+
     <script>
-        function game(){
-         let weapon = ""   
-            for(i=0; i<5;i++){
-                weapon = prompt("Choose your weapon:")
-                playRound(weapon, computerPlay())
-            }
-        }
+
+        //wybierac element przez query selector i sprobowac zwrocic node value zamiast ustawiac wartos zaleznie od klasy
 
 
-        function playRound(playerSelection, computerSelection){
-            //let playerSelection = window.prompt("Rock, paper or scissors?")
+        function playRound(playerSelection){
+
             let upperCasePlayer = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
             computerSelection = computerPlay()
             const winningPlays = ["Rock, Scissors", "Scissors, Paper", "Paper, Rock"]
 
             let playArray = upperCasePlayer +", "+ computerSelection
             playArray.toString()
-            console.log(computerSelection)
-            console.log(upperCasePlayer)
-
+            
            if(winningPlays.includes(playArray)){
                 alert(`You win! ${upperCasePlayer} beats ${computerSelection}`)
                 return `You win! ${upperCasePlayer} beats ${computerSelection}`
@@ -45,13 +44,14 @@
             let items = ["Rock", "Paper", "Scissors"]
             return items[Math.floor(Math.random()*items.length)]
         }
+        
 
 
+        
+  
         // sometimes scissors is a tie, why?
-        
 
-        console.log(game())
-        
+        // hmm hmm hmm
     </script>
 </body>
 </html>
