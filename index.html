@@ -8,50 +8,76 @@
 </head>
 <body>
 
-    <button class = "Rock">Rock</button>
-    <button>Paper</button>
+    <button>Rock</button>
     <button>Scissors</button>
+    <button>Paper</button>
 
+    <div>
+        <p></p>
+        <div class="plrScore">Player:
+            <div class="plrPoints">0    
+            </div>
+        </div>
+        <p></p>
+        <div class="compScore">Computer:
+            <div class="compPoints">0
+            </div>
+        </div>
+    </div>
 
-    <script>
+    <script defer>
 
         //wybierac element przez query selector i sprobowac zwrocic node value zamiast ustawiac wartos zaleznie od klasy
+        const btn = document.querySelectorAll("button");
+        
+        btn.forEach((button) => {
+            button.addEventListener('click', playRound)
+        })
+        
 
+        function playRound(playerSelection, plrScore, compScore){
 
-        function playRound(playerSelection){
+            playerSelection = playerSelection.currentTarget.textContent
+            plrScoreElement = document.querySelector('.plrPoints')
+            compScoreElement = document.querySelector('.compPoints')
+
+            plrScore = parseInt(plrScoreElement.textContent)
+            compScore = parseInt(compScoreElement.textContent)
 
             let upperCasePlayer = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+
             computerSelection = computerPlay()
             const winningPlays = ["Rock, Scissors", "Scissors, Paper", "Paper, Rock"]
 
             let playArray = upperCasePlayer +", "+ computerSelection
             playArray.toString()
-            
+
            if(winningPlays.includes(playArray)){
-                alert(`You win! ${upperCasePlayer} beats ${computerSelection}`)
+                plrScore++
+                plrScoreElement.nodeValue = plrScore
                 return `You win! ${upperCasePlayer} beats ${computerSelection}`
             }else if(upperCasePlayer === computerSelection){
-                alert("It's a tie!")
+                
                 return "It's a tie!"
             }else{
-                alert(`You lose! ${computerSelection} beats ${upperCasePlayer}`)
+                compScore++
+                compScoreElement.nodeValue = compScore
                 return `You lose! ${computerSelection} beats ${upperCasePlayer}`
             }
             
+
+            if(plrScore == 5 || compScore == 5){
+                compScoreElement.nodeValue = 0;
+                plrScoreElement.nodeValue = 0;
+            }
+
         }
         
         function computerPlay(){
             let items = ["Rock", "Paper", "Scissors"]
             return items[Math.floor(Math.random()*items.length)]
         }
-        
-
-
-        
-  
-        // sometimes scissors is a tie, why?
-
-        // hmm hmm hmm
+         
     </script>
 </body>
 </html>
