@@ -41,6 +41,8 @@
             plrScoreElement = document.querySelector('.plrPoints')
             compScoreElement = document.querySelector('.compPoints')
 
+            
+
             plrScore = parseInt(plrScoreElement.textContent)
             compScore = parseInt(compScoreElement.textContent)
 
@@ -52,26 +54,34 @@
             computerSelection = computerPlay()
             const winningPlays = ["Rock, Scissors", "Scissors, Paper", "Paper, Rock"]
 
+            console.log(computerSelection)
+
             let playArray = upperCasePlayer +", "+ computerSelection
             playArray.toString()
 
            if(winningPlays.includes(playArray)){
                 plrScore++
-                plrScoreElement.nodeValue = plrScore
-                return `You win! ${upperCasePlayer} beats ${computerSelection}`
+                plrScoreElement.innerHTML = plrScore
+                
+                // return `You win! ${upperCasePlayer} beats ${computerSelection}`
             }else if(upperCasePlayer === computerSelection){
                 
-                return "It's a tie!"
+         
             }else{
                 compScore++
-                compScoreElement.nodeValue = compScore
-                return `You lose! ${computerSelection} beats ${upperCasePlayer}`
+                compScoreElement.innerHTML = compScore
+                // return `You lose! ${computerSelection} beats ${upperCasePlayer}`
             }
             
 
-            if(plrScore == 5 || compScore == 5){
-                compScoreElement.nodeValue = 0;
-                plrScoreElement.nodeValue = 0;
+            if(plrScore >= 5 ){
+                compScoreElement.innerHTML = 0;
+                plrScoreElement.innerHTML = 0;
+                return alert('Player wins!')
+            }else if (compScore >= 5){
+                compScoreElement.innerHTML = 0;
+                plrScoreElement.innerHTML = 0;
+                return alert('Computer wins!')
             }
 
         }
